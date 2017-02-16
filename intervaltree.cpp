@@ -4,7 +4,7 @@ struct node;
 struct node1;
 node1 * newNode(node i);
 node1 *insert(node1 *root, node i);
-bool dooverlap(node i1, node i2);
+bool matchinterval(node i1, node i2);
 node *overlap(node1 *root, node i);
 void traversal(node1 *root);
 struct node
@@ -57,7 +57,7 @@ node1 *insert(node1 *root, node i)
         root->max = i.high;
     return root;
 }
-bool dooverlap(node i1, node i2)
+bool matchinterval(node i1, node i2)
 {
     if (i1.low <= i2.high && i2.low <= i1.high)return true;
     return false;
@@ -65,7 +65,7 @@ bool dooverlap(node i1, node i2)
 node *overlap(node1 *root, node i)
 {
     if (root == NULL) return NULL;
-    if (dooverlap(*(root->i), i))return root->i;
+    if (matchinterval(*(root->i), i))return root->i;
     if (root->left != NULL && root->left->max >= i.low)return overlap(root->left, i);
     return overlap(root->right, i);
 }
